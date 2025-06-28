@@ -32,4 +32,36 @@ INSERT INTO tbGenero (nome) VALUES ('Ação'),
 
 -- Explique o que acontece se tentar inserir um valor duplicado em uma coluna com UNIQUE.
 
-Da erro, pois valores duplicados não são permitidos em colunas UNIQUE.
+-- resp: Da erro, pois valores duplicados não são permitidos em colunas UNIQUE.
+
+
+-- Insira dois registros na tabela tbPerfil com nomes e idades diferentes.
+
+create table tbPerfil (
+    id_perfil int auto_increment primary key,
+    nome varchar(100),
+    idade int not null
+); 
+
+insert into tbPerfil (nome, idade)
+values ('José', 17),
+('Maria', 10)
+
+-- Insira um conteúdo com avaliação acima de 9.5. A coluna tem CHECK(avaliacao <= 10)?
+INSERT INTO tbnetflix (cod, titulo, avaliacaoGlobalNota, avaliacaoGlobal, dataDeLancamento, horasDeVisualizacao, duracaoEmMinutos, duracao, vizulizacoes)
+VALUES (1010, 'O Senhor dos Anéis', 11, 'Yes', '2001-12-19', 1200000, 178, '02:58', 25000000);
+-- não possui check, ent aceita nota acima de 10, até o limite Decimal(3,1)
+
+-- Insira um conteúdo com NULL em uma coluna marcada como NOT NULL. O que acontece?
+
+insert into tbperfil(nome, idade) 
+values ('João', null);
+
+-- resp: da erro, pois a coluna que está com o NOT NULL, não pode ser deixada com valor NULL.
+
+
+-- Insira um conteúdo com data de lançamento futura (ex: '2030-01-01'). O MySQL aceita?
+INSERT INTO tbnetflix (titulo, avaliacaoGlobalNota, avaliacaoGlobal, dataDeLancamento, horasDeVisualizacao, duracaoEmMinutos, duracao, vizulizacoes)
+VALUES ('Filme Futuro', 0, 'Yes', '2030-01-01', 0, 120, '02:00', 0);
+
+--resp: Sim, o MySQL aceita inserir uma data futura normalmente, desde que o formato seja válido.
