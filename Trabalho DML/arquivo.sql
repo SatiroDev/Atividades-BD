@@ -207,3 +207,12 @@ where id_categoria_FK = 2;
 
 --ON DELETE RESTRICT: Impede a exclusão do pai imediatamente se houver filhos relacionados.
 --ON DELETE NO ACTION: Também impede a exclusão, mas a verificação ocorre no fim da transação.
+
+
+-- Crie uma tabela tbVisualizacao com FOREIGN KEY para tbNetflix(cod) com ON DELETE CASCADE.
+create table tbVisualizacao (
+    id_visualizacao int primary key auto_increment,
+    cod_netflix_fk int,
+    dataVisualizacao DATE,
+    constraint fkVisualizacaoNetflix foreign key (cod_netflix_fk) references tbNetflix(cod) on delete cascade
+);
