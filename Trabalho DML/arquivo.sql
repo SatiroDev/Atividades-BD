@@ -97,3 +97,31 @@ update tbnetflix set vizulizacoes = vizulizacoes * 1.10;
 -- Atualize a duração de todos os títulos com nota inferior a 5 para 60 minutos.
 update tbnetflix set duracao = '01:00'
 where avaliacaoGlobalNota < 5;
+
+-- Atualize um título usando um UPDATE com subquery.
+
+update tbnetflix set titulo = 'Novo título'
+where avaliacaoGlobalNota = (
+    select min(avaliacaoGlobalNota) from tbnetflix
+    where dataDeLancamento > '2026-01-01'
+);
+
+-- Explique como usar UPDATE em múltiplas tabelas ao mesmo tempo no MySQL
+
+-- Use UPDATE com JOIN para alterar colunas de várias tabelas ao mesmo tempo, desde que estejam relacionadas (chaves estrangeiras)
+
+-- Remova um registro específico da tabela tbPerfil.
+
+delete from tbPerfil 
+where id_perfil = 2;
+
+-- Delete todos os títulos com avaliação menor que 4.0.
+
+delete from tbnetflix
+where avaliacaoGlobalNota < 4;
+
+-- Remova todos os gêneros da tabela tbGenero exceto “Drama”.
+
+delete from tbGenero 
+where nome != 'Drama';
+
