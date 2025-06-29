@@ -82,3 +82,18 @@ update tbGenero set nome = 'Suspense'
 where nome = 'Ação';
 
 -- Atualize os títulos com mais de 2 horas para ter uma avaliação 9.0.
+update tbnetflix set avaliacaoGlobalNota = 9
+where duracao > '02:00';
+
+-- O que acontece se você rodar um UPDATE sem WHERE?
+
+-- resp: todos os registros da tabela serão atualizados com os novos valores informados. Isso pode causar perda de dados importantes se feito por engano.
+
+-- Crie uma atualização que aumente todas as visualizações em 10%.
+
+update tbnetflix set vizulizacoes = vizulizacoes * 1.10;
+
+
+-- Atualize a duração de todos os títulos com nota inferior a 5 para 60 minutos.
+update tbnetflix set duracao = '01:00'
+where avaliacaoGlobalNota < 5;
