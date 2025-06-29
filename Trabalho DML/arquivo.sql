@@ -65,3 +65,20 @@ INSERT INTO tbnetflix (titulo, avaliacaoGlobalNota, avaliacaoGlobal, dataDeLanca
 VALUES ('Filme Futuro', 0, 'Yes', '2030-01-01', 0, 120, '02:00', 0);
 
 --resp: Sim, o MySQL aceita inserir uma data futura normalmente, desde que o formato seja válido.
+
+
+-- Atualize a avaliação de um título específico da tbNetflix para 8.9.
+update tbNetflix set avaliacaoGlobalNota = 8.9 
+where titulo = 'O senhor dos Anéis';
+
+-- Atualize todos os títulos lançados antes de 2020 para avaliação 7.5.
+
+update tbNetflix set avaliacaoGlobalNota = 7.5
+where dataDeLancamento < '2020-01-01';
+
+-- Altere o nome de um gênero específico na tbGenero para “Suspense”.
+
+update tbGenero set nome = 'Suspense'
+where nome = 'Ação';
+
+-- Atualize os títulos com mais de 2 horas para ter uma avaliação 9.0.
