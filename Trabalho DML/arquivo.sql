@@ -125,3 +125,16 @@ where avaliacaoGlobalNota < 4;
 delete from tbGenero 
 where nome != 'Drama';
 
+-- Remova todos os conteúdos que não tenham valor na coluna vizulizacoes.
+
+delete from tbnetflix
+where vizulizacoes is null;
+
+-- Delete todos os perfis com idade menor que 13 anos.
+
+delete from tbperfil 
+where idade < 13;
+
+-- O que acontece se você usar DELETE sem cláusula WHERE?
+--resp: Todos os registros da tabela serão removidos permanentemente, ou seja, a tabela ficará vazia.
+
