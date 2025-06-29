@@ -98,13 +98,8 @@ update tbnetflix set vizulizacoes = vizulizacoes * 1.10;
 update tbnetflix set duracao = '01:00'
 where avaliacaoGlobalNota < 5;
 
--- Atualize um título usando um UPDATE com subquery.
 
-update tbnetflix set titulo = 'Novo título'
-where avaliacaoGlobalNota = (
-    select min(avaliacaoGlobalNota) from tbnetflix
-    where dataDeLancamento > '2026-01-01'
-);
+
 
 -- Explique como usar UPDATE em múltiplas tabelas ao mesmo tempo no MySQL
 
@@ -137,4 +132,26 @@ where idade < 13;
 
 -- O que acontece se você usar DELETE sem cláusula WHERE?
 --resp: Todos os registros da tabela serão removidos permanentemente, ou seja, a tabela ficará vazia.
+
+
+-- Apague todos os conteúdos lançados após 2028.
+
+delete from tbnetflix
+where dataDeLancamento > '2028-01-01';
+
+-- Remova títulos cujo nome começa com "The".
+
+delete from tbnetflix 
+where titulo like 'The%';
+
+
+-- Explique a diferença entre DELETE, DROP e TRUNCATE.
+
+-- resp: 
+-- DELETE: Remove dados específicos com WHERE, mantém a tabela.
+
+-- TRUNCATE: Remove todos os dados rapidamente, sem WHERE, mantém a tabela.
+
+-- DROP: Apaga a tabela inteira, incluindo estrutura e dados.
+
 
