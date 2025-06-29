@@ -32,7 +32,7 @@ INSERT INTO tbGenero (nome) VALUES ('Ação'),
 
 -- Explique o que acontece se tentar inserir um valor duplicado em uma coluna com UNIQUE.
 
--- resp: Da erro, pois valores duplicados não são permitidos em colunas UNIQUE.
+Da erro, pois valores duplicados não são permitidos em colunas UNIQUE.
 
 
 -- Insira dois registros na tabela tbPerfil com nomes e idades diferentes.
@@ -45,26 +45,26 @@ create table tbPerfil (
 
 insert into tbPerfil (nome, idade)
 values ('José', 17),
-('Maria', 10)
+('Maria', 10);
 
 -- Insira um conteúdo com avaliação acima de 9.5. A coluna tem CHECK(avaliacao <= 10)?
 INSERT INTO tbnetflix (cod, titulo, avaliacaoGlobalNota, avaliacaoGlobal, dataDeLancamento, horasDeVisualizacao, duracaoEmMinutos, duracao, vizulizacoes)
 VALUES (1010, 'O Senhor dos Anéis', 11, 'Yes', '2001-12-19', 1200000, 178, '02:58', 25000000);
--- não possui check, ent aceita nota acima de 10, até o limite Decimal(3,1)
+não possui check, ent aceita nota acima de 10, até o limite Decimal(3,1)
 
 -- Insira um conteúdo com NULL em uma coluna marcada como NOT NULL. O que acontece?
 
 insert into tbperfil(nome, idade) 
 values ('João', null);
 
--- resp: da erro, pois a coluna que está com o NOT NULL, não pode ser deixada com valor NULL.
+resp: da erro, pois a coluna que está com o NOT NULL, não pode ser deixada com valor NULL.
 
 
 -- Insira um conteúdo com data de lançamento futura (ex: '2030-01-01'). O MySQL aceita?
 INSERT INTO tbnetflix (titulo, avaliacaoGlobalNota, avaliacaoGlobal, dataDeLancamento, horasDeVisualizacao, duracaoEmMinutos, duracao, vizulizacoes)
 VALUES ('Filme Futuro', 0, 'Yes', '2030-01-01', 0, 120, '02:00', 0);
 
---resp: Sim, o MySQL aceita inserir uma data futura normalmente, desde que o formato seja válido.
+Sim, o MySQL aceita inserir uma data futura normalmente, desde que o formato seja válido.
 
 
 -- Atualize a avaliação de um título específico da tbNetflix para 8.9.
@@ -87,7 +87,7 @@ where duracao > '02:00';
 
 -- O que acontece se você rodar um UPDATE sem WHERE?
 
--- resp: todos os registros da tabela serão atualizados com os novos valores informados. Isso pode causar perda de dados importantes se feito por engano.
+resp: todos os registros da tabela serão atualizados com os novos valores informados. Isso pode causar perda de dados importantes se feito por engano.
 
 -- Crie uma atualização que aumente todas as visualizações em 10%.
 
@@ -103,7 +103,7 @@ where avaliacaoGlobalNota < 5;
 
 -- Explique como usar UPDATE em múltiplas tabelas ao mesmo tempo no MySQL
 
--- Use UPDATE com JOIN para alterar colunas de várias tabelas ao mesmo tempo, desde que estejam relacionadas (chaves estrangeiras)
+Use UPDATE com JOIN para alterar colunas de várias tabelas ao mesmo tempo, desde que estejam relacionadas (chaves estrangeiras)
 
 -- Remova um registro específico da tabela tbPerfil.
 
@@ -131,7 +131,7 @@ delete from tbperfil
 where idade < 13;
 
 -- O que acontece se você usar DELETE sem cláusula WHERE?
---resp: Todos os registros da tabela serão removidos permanentemente, ou seja, a tabela ficará vazia.
+Todos os registros da tabela serão removidos permanentemente, ou seja, a tabela ficará vazia.
 
 
 -- Apague todos os conteúdos lançados após 2028.
@@ -148,11 +148,11 @@ where titulo like 'The%';
 -- Explique a diferença entre DELETE, DROP e TRUNCATE.
 
 -- resp: 
--- DELETE: Remove dados específicos com WHERE, mantém a tabela.
+DELETE: Remove dados específicos com WHERE, mantém a tabela.
 
--- TRUNCATE: Remove todos os dados rapidamente, sem WHERE, mantém a tabela.
+TRUNCATE: Remove todos os dados rapidamente, sem WHERE, mantém a tabela.
 
--- DROP: Apaga a tabela inteira, incluindo estrutura e dados.
+DROP: Apaga a tabela inteira, incluindo estrutura e dados.
 
 --Crie duas tabelas: tbCategoria (id_categoria) e tbFilme (id_filme, id_categoria FK) com ON DELETE CASCADE.
 
@@ -205,8 +205,8 @@ where id_categoria_FK = 2;
 -- Explique a diferença entre ON DELETE RESTRICT e ON DELETE NO ACTION.
 -- resp:
 
---ON DELETE RESTRICT: Impede a exclusão do pai imediatamente se houver filhos relacionados.
---ON DELETE NO ACTION: Também impede a exclusão, mas a verificação ocorre no fim da transação.
+ON DELETE RESTRICT: Impede a exclusão do pai imediatamente se houver filhos relacionados.
+ON DELETE NO ACTION: Também impede a exclusão, mas a verificação ocorre no fim da transação.
 
 
 -- Crie uma tabela tbVisualizacao com FOREIGN KEY para tbNetflix(cod) com ON DELETE CASCADE.
@@ -216,3 +216,8 @@ create table tbVisualizacao (
     dataVisualizacao DATE,
     constraint fkVisualizacaoNetflix foreign key (cod_netflix_fk) references tbNetflix(cod) on delete cascade
 );
+
+
+UPDATE tbnetflix
+SET avaliacaoGlobalNota = 8.0
+WHERE titulo = 'O senhor dos Anéis' AND avaliacaoGlobalNota < 7;
