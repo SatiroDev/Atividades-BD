@@ -154,4 +154,56 @@ where titulo like 'The%';
 
 -- DROP: Apaga a tabela inteira, incluindo estrutura e dados.
 
+--Crie duas tabelas: tbCategoria (id_categoria) e tbFilme (id_filme, id_categoria FK) com ON DELETE CASCADE.
 
+create database exerDML3;
+
+use exerDML3;
+
+create table tbCategoria (
+    id_categoria int primary key auto_increment
+);
+
+create table tbFilme (
+    id_filme int primary key auto_increment,
+    id_categoria_FK int,
+    constraint fkCategoriaFilme foreign key (id_categoria_FK) references tbCategoria (id_categoria) on delete cascade
+);
+
+--	Insira 3 categorias e 5 filmes vinculados a essas categorias
+
+insert into tbCategoria (id_categoria)
+values (1),
+(2),
+(3);
+
+insert into tbFilme (id_filme, id_categoria_FK)
+values (1, 1),
+(2, 2),
+(3, 3),
+(4, 2),
+(5, 1);
+
+-- Delete uma categoria. O que acontece com os filmes vinculados?
+
+delete from tbCategoria
+where id_categoria = 1;
+
+-- Modifique a constraint da tabela tbFilme para ON DELETE SET NULL. Teste o comportamento.
+alter table tbFilme
+drop foreign key fkCategoriaFilme;
+
+ALTER TABLE tbFilme
+ADD CONSTRAINT fkCategoriaFilme
+FOREIGN KEY (id_categoria_FK) REFERENCES tbCategoria(id_categoria)
+ON DELETE SET NULL;
+
+
+delete from tbFilme
+where id_categoria_FK = 2;
+
+-- Explique a diferença entre ON DELETE RESTRICT e ON DELETE NO ACTION.
+-- resp:
+
+--ON DELETE RESTRICT: Impede a exclusão do pai imediatamente se houver filhos relacionados.
+--ON DELETE NO ACTION: Também impede a exclusão, mas a verificação ocorre no fim da transação.
