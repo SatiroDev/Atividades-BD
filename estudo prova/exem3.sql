@@ -40,3 +40,6 @@ select
     data_nascimento as 'Data de nascimento'
 from Pacientes
 where sexo = 'F';
+
+update Pacientes set nomePaciente = 'Maria Fernanda'
+where idPaciente = 2;
