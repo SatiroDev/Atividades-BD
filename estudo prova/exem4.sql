@@ -47,3 +47,5 @@ select
     especialidade as 'Especialidade do treinador'
 from Treinadores
 where ativo = 1 and nomeTreinador like 'T%';
+
+alter table Alunos modify cpf varchar(11) unique not null;
