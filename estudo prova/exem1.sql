@@ -18,3 +18,25 @@ create table Categoria (
 insert into Categoria (nomeCategoria)
 values ('Literatura'),
 ('Ficção Científica');
+
+insert into Livro (tituloLivro, autor, ano_publicacao, preco)
+values ('1984', 'George Orwell', 1949, 39.90),
+('Dom Casmusso', 'Machado de Assis', 1899, 29.50);
+
+alter table Livro add categoria_id int null;
+
+alter table Livro add constraint fkLivroCategoria 
+foreign key (categoria_id) references Categoria (idCategoria);
+
+update Livro set categoria_id = 2
+where tituloLivro = '1984';
+
+update Livro set tituloLivro = 'Dom Casmurro'
+where tituloLivro = 'Dom Casmusso';
+
+select 
+    tituloLivro as 'Título do Livro',
+    autor as 'Autor do Livro',
+    preco as 'Preço do Livro'
+from Livro
+where preco > 30.00;
