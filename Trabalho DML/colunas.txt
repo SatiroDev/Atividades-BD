@@ -1,0 +1,9 @@
+cod INT PRIMARY KEY,
+    titulo VARCHAR(300),
+    avaliacaoGlobalNota DECIMAL(3,1),
+    avaliacaoGlobal VARCHAR(10),
+    dataDeLancamento DATE,
+    horasDeVisualizacao FLOAT,
+    duracaoEmMinutos INT,
+    duracao TIME,
+    vizulizacoes BIGINT
