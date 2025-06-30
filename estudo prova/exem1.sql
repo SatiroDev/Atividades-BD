@@ -1,6 +1,7 @@
 create database LivrariaDB;
-
 use LivrariaDB;
+
+
 
 create table Livro (
     idLivro int primary key auto_increment,
@@ -9,11 +10,12 @@ create table Livro (
     ano_publicacao int,
     preco decimal (4,2) not null
 );
-
 create table Categoria (
     idCategoria int primary key auto_increment,
     nomeCategoria varchar(50) not null
 );
+
+
 
 insert into Categoria (nomeCategoria)
 values ('Literatura'),
@@ -23,8 +25,9 @@ insert into Livro (tituloLivro, autor, ano_publicacao, preco)
 values ('1984', 'George Orwell', 1949, 39.90),
 ('Dom Casmusso', 'Machado de Assis', 1899, 29.50);
 
-alter table Livro add categoria_id int null;
 
+
+alter table Livro add categoria_id int null;
 alter table Livro add constraint fkLivroCategoria 
 foreign key (categoria_id) references Categoria (idCategoria);
 
