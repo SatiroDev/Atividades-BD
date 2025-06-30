@@ -39,3 +39,6 @@ select
     salario as 'Salário do Funcionário'
 from Funcionarios
 where salario >= 4000.00;
+
+update Departamentos set nomeDepartamento = 'Tecnologia da Informação'
+where idDepartamento = 2;
