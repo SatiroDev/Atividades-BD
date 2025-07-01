@@ -13,7 +13,7 @@ create table Pedidos (
     valorTotal decimal(8,2) not null,
     dataPedido date not null,
     status varchar(100) not null
-    check (status = 'Pedende' or status = 'Pago' or status = 'Cancelado')
+    check (status = 'Pendende' or status = 'Pago' or status = 'Cancelado')
 );
 
 insert into Clientes (nome, cpf, telefone)
